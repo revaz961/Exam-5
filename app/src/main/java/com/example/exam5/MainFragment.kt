@@ -32,14 +32,15 @@ class MainFragment : Fragment() {
     }
 
     private fun init(){
+        mainViewModel.init()
         adapter = FieldsGroupAdapter()
         binding!!.rvFieldsGroup.adapter = adapter
+        observes()
+    }
 
+    private fun observes(){
         mainViewModel.mainLiveData.observe(viewLifecycleOwner,{
             adapter!!.setData(it)
         })
     }
-
-
-
 }
