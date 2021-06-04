@@ -32,7 +32,7 @@ class MainFragment : Fragment() {
     }
 
     private fun init(){
-        mainViewModel.init()
+        mainViewModel.init(getString(R.string.server_json))
         adapter = FieldsGroupAdapter()
         binding!!.rvFieldsGroup.adapter = adapter
         observes()

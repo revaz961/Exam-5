@@ -18,24 +18,23 @@ class MainViewModel: ViewModel() {
 
     private var Fields = mutableListOf<MutableList<Field>>()
 
-    fun init(){
+    fun init(jsonStr:String){
         viewModelScope.launch {
             withContext(Dispatchers.Default){
-                initLiveData()
+                initLiveData(jsonStr)
             }
 
         }
 
     }
 
-    private suspend fun initLiveData(){
-        parseJson()
+    private suspend fun initLiveData(jsonStr:String){
+        parseJson(jsonStr)
         mainLiveData.postValue(Fields)
     }
 
-    private suspend fun parseJson (){
+    private suspend fun parseJson (jsonStr:String){
         try {
-            var jsonStr = (R.string.server_json)
             var jsonArray = JSONArray(jsonStr)
             for (i in 0 until jsonArray.length()) {
                 var arrJson = jsonArray.getJSONArray(i)
